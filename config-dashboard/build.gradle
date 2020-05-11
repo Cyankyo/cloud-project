@@ -4,14 +4,16 @@ buildscript {
 	}
 	repositories {
 		maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'}
-		mavenCentral()
+//		mavenCentral()
 	}
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-		classpath('gradle.plugin.com.palantir.gradle.docker:gradle-docker:0.13.0')
+//		classpath('gradle.plugin.com.palantir.gradle.docker:gradle-docker:0.13.0')
 	}
 }
-
+plugins {
+	id 'com.github.johnrengelman.shadow' version '1.2.3'
+}
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
@@ -21,16 +23,17 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 
 repositories {
-	mavenCentral()
+	maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'}
+//	mavenCentral()
 }
 
-apply plugin: 'com.palantir.docker'
+//apply plugin: 'com.palantir.docker'
 
-docker {
-	name "${project.group}/${jar.baseName}"
-	files jar.archivePath
-	buildArgs(['JAR_FILE': "${jar.archiveName}"])
-}
+//docker {
+//	name "${project.group}/${jar.baseName}"
+//	files jar.archivePath
+//	buildArgs(['JAR_FILE': "${jar.archiveName}"])
+//}
 
 ext {
 	springCloudVersion = 'Dalston.SR4'
